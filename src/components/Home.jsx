@@ -9,7 +9,10 @@ function Home() {
 
   // Fetch university data from the backend
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/universities`)
+    fetch(`${import.meta.env.VITE_API_URL}/universities`,{
+      credentials: "include",
+    })
+
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -47,6 +50,7 @@ function Home() {
   const handleDelete = async (id) => {
     await fetch(`${import.meta.env.VITE_API_URL}/universities/${id}`, {
       method: "DELETE",
+      credentials: "include",
     });
     refreshList();
   };
@@ -61,6 +65,7 @@ function Home() {
     await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify(formState),
     });
   
@@ -77,7 +82,18 @@ function Home() {
   };
   
   const refreshList = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/universities`)
+    fetch(`${import.meta.env.VITE_API_URL}/universities`,{
+      credentials: "include",
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .catch((error) => {
+        console.error("Error fetching universities:", error);
+    })
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
