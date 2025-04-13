@@ -9,7 +9,7 @@ function Home() {
 
   // Fetch university data from the backend
   useEffect(() => {
-    fetch("https://project2-server-tawny.vercel.app/universities")
+    fetch(`${import.meta.env.VITE_API_URL}/universities`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
