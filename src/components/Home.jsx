@@ -52,7 +52,8 @@ function Home() {
       method: "DELETE",
       credentials: "include",
     });
-    refreshList();
+    setSelectedItem(null);
+    await refreshList();
   };
   
   const handleSubmit = async (e) => {
@@ -77,30 +78,31 @@ function Home() {
       imageurl: "",
       is_public: false,
     });
-  
-    refreshList();
+    setSelectedItem(null);
+    await refreshList();
   };
   
-  const refreshList = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/universities`,{
-      credentials: "include",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
-      })
-      .catch((error) => {
-        console.error("Error fetching universities:", error);
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setItems(data);
-        }
+  const refreshList = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/universities`, {
+        credentials: "include",
       });
+  
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+  
+      const data = await res.json();
+      console.log("Refreshed universities:", data); 
+  
+      if (Array.isArray(data)) {
+        setItems(data);
+      }
+    } catch (error) {
+      console.error("Error refreshing list:", error);
+    }
   };
+  
   
 
   return (
