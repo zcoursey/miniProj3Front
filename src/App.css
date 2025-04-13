@@ -1,0 +1,12 @@
+/*Css for the glowing cursor effect, this is to prevent the cursor selecting text when clicking on components*/
+body, input, textarea, button {
+    user-select: none !important;
+    caret-color: transparent !important;
+  }
+  
+  
+  #glowing-cursor {
+    pointer-events: none;
+    user-select: none;
+    caret-color: transparent;
+  }
