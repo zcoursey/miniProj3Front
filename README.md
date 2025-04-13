@@ -6,8 +6,8 @@ This mini project is a full stack web app that allows users to view universities
 - Zane Coursey  
 
 ## Deployed Links
-- Frontend:  
-- Backend (API):
+- Frontend:  https://mini-proj3-front.vercel.app/
+- Backend (API): https://project3-server-kappa.vercel.app/
 
 ### React Frontend (`.zip`)
 - src/ folder
@@ -15,7 +15,7 @@ This mini project is a full stack web app that allows users to view universities
 - vercel.json
 
 ### Express Backend (`.zip`)
-- All route files (UserRoutes.js, UniversityRoutes.js, PoolConnection.js, and UserRoutes.js)
+- All route files (UserRoutes.js, UniversityRoutes.js, PoolConnection.js, and UserRoles.js)
 - index.js
 - .env file (with DATABASE_URL)
 - vercel.json
